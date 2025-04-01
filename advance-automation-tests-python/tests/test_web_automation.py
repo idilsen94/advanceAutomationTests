@@ -27,7 +27,7 @@ BROWSER_CONFIG = {
 }
 
 def setup_logging():
-    """Initializes and configures the logging system"""
+    """Initializes and configures  the logging system"""
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     return logger
