@@ -68,4 +68,3 @@ class CareerPortalAutomation(WebTestFramework):
         self.assertIn(qa_portal.APPLICATION_URL, qa_portal.get_page_url(),
                      "Application form redirection failed")
         self.logger.info("Application form verification completed successfully")
-
