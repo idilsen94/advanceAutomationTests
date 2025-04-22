@@ -26,6 +26,17 @@ class QualityAssurancePortal(WebPageBase):
     REQUIRED_DEPARTMENT = "Quality Assurance"
     REQUIRED_LOCATION = "Istanbul, Turkey"
 
+    def __init__(self, driver):
+        """Initializes the QA portal and waits for the necessary elements to load"""
+        super().__init__(driver)
+        self.verify_elements_loaded()
+
+    def verify_elements_loaded(self):
+        """Verifies key elements on the page have loaded"""
+        self.wait_for_element_visible(self.BTN_VIEW_ALL_JOBS, timeout=10)
+        self.wait_for_element_visible(self.DROPDOWN_LOCATION, timeout=10)
+        self.wait_for_element_visible(self.JOB_LIST_HEADER, timeout=10)
+
     def open_job_listings(self):
         """Opens the complete list of QA job positions"""
         self.perform_click(*self.BTN_VIEW_ALL_JOBS)
