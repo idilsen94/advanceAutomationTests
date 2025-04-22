@@ -23,9 +23,14 @@ class WebPageBase:
         """Gets the current page URL"""
         return self.driver.current_url
 
-    def wait_for_element(self, method, message=''):
-        """Waits for element to be clickable"""
-        return self.wait.until(ec.element_to_be_clickable(method), message)
+    def wait_for_element(self, locator, timeout=20):
+        """
+        Wait for element to be clickable
+        :param locator: locator of the element to find
+        :param int timeout: Maximum time you want to wait for the element
+
+        """
+        return self.wait.until(locator, ec.element_to_be_clickable, timeout)
 
     def extract_text(self, locator):
         """Gets text from the specified element"""

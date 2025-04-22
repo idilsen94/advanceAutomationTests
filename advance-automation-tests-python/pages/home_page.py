@@ -6,21 +6,26 @@ from pages.base_page import WebPageBase
 
 class MainPage(WebPageBase):
     """Handles main website and careers portal interactions"""
-    # Main page element locators
     NAV_COMPANY = (By.XPATH, "//a[contains(text(), 'Company')]")
     NAV_CAREERS = (By.LINK_TEXT, 'Careers')
-    
-    # Careers portal element locators
+    GET_A_DEMO = (By.LINK_TEXT, 'Get a Demo')
+
     SECTION_LOCATIONS = (By.ID, 'career-our-location')
     SECTION_TEAMS = (By.LINK_TEXT, 'See all teams')
     SECTION_CULTURE = (By.XPATH, "//h2[contains(text(), 'Life at Insider')]")
-    
-    # Page URLs
+
     BASE_URL = 'https://useinsider.com/'
+
+    def __init__(self, driver):
+        """Initializes the page and verifies it has loaded"""
+        super().__init__(driver)
+        self.verify_page_load()
 
     def verify_page_load(self):
         """Verifies main page has loaded correctly"""
         self.wait.until(ec.visibility_of_element_located(self.NAV_COMPANY), 
+                       'Company navigation element not found on page')
+        self.wait.until(ec.visibility_of_element_located(self.GET_A_DEMO),
                        'Company navigation element not found on page')
 
     def hover_company_menu(self):
